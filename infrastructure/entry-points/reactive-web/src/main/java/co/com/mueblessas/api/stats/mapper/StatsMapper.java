@@ -19,8 +19,7 @@ public class StatsMapper {
                 .praiseReason(statsRequest.getMotivoFelicitaciones())
                 .exchangeReason(statsRequest.getMotivoCambio())
                 .hash(statsRequest.getHash())
-                .timestamp(Instant.now()) // ← se genera en el dominio, no viene del request
+                .timestamp(Instant.now())
                 .build();
-
     }
 }
