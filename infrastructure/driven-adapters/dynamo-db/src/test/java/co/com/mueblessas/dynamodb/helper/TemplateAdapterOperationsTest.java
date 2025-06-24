@@ -47,7 +47,7 @@ class TemplateAdapterOperationsTest {
     }
 
     @Test
-    void modelEntityPropertiesMustNotBeNull() {
+    void shouldModelEntityPropertiesMustNotBeNull() {
         StatsEntity modelEntityUnderTest = new StatsEntity(anyString(),anyInt(),anyInt(),
                 anyInt(),anyInt(),anyInt(),anyInt(),anyInt(),anyString());
 
@@ -55,49 +55,5 @@ class TemplateAdapterOperationsTest {
         assertNotNull(modelEntityUnderTest.getHash());
     }
 
-//    @Test
-//    void testSave() {
-//        when(customerTable.putItem(modelEntity)).thenReturn(CompletableFuture.runAsync(()->{}));
-//        when(mapper.map(modelEntity, StatsEntity.class)).thenReturn(modelEntity);
-//
-//        statsTemplateAdapter =
-//                new StatsTemplateAdapter(dynamoDbEnhancedAsyncClient, mapper, "Stats");
-//
-//        StepVerifier.create(statsTemplateAdapter.save(modelEntity))
-//                .expectNextCount(Stats.builder().build())
-//                .verifyComplete();
-//    }
-//
-//    @Test
-//    void testGetById() {
-//        String id = "id";
-//
-//        when(customerTable.getItem(
-//                Key.builder().partitionValue(AttributeValue.builder().s(id).build()).build()))
-//                .thenReturn(CompletableFuture.completedFuture(modelEntity));
-//        when(mapper.map(modelEntity, Object.class)).thenReturn("value");
-//
-//        DynamoDBTemplateAdapter dynamoDBTemplateAdapter =
-//                new DynamoDBTemplateAdapter(dynamoDbEnhancedAsyncClient, mapper,"Stats");
-//
-//        StepVerifier.create(dynamoDBTemplateAdapter.getById("hash"))
-//                .expectNext()
-//                .verifyComplete();
-//    }
-//
-//    @Test
-//    void testDelete() {
-//        when(mapper.map(modelEntity, StatsEntity.class)).thenReturn(modelEntity);
-//        when(mapper.map(modelEntity, Object.class)).thenReturn("value");
-//
-//        when(customerTable.deleteItem(modelEntity))
-//                .thenReturn(CompletableFuture.completedFuture(modelEntity));
-//
-//        DynamoDBTemplateAdapter dynamoDBTemplateAdapter =
-//                new DynamoDBTemplateAdapter(dynamoDbEnhancedAsyncClient, mapper,"Stats");
-//
-//        StepVerifier.create(dynamoDBTemplateAdapter.delete(modelEntity))
-//                .expectNext("value")
-//                .verifyComplete();
-//    }
+
 }
