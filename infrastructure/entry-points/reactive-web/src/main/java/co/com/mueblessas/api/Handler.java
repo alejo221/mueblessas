@@ -2,6 +2,7 @@ package co.com.mueblessas.api;
 
 import co.com.mueblessas.api.stats.StatsRequest;
 import co.com.mueblessas.api.stats.mapper.StatsMapper;
+import co.com.mueblessas.api.stats.mapper.StatsResponse;
 import co.com.mueblessas.api.util.ApiResponse;
 import co.com.mueblessas.api.validator.RequestValidator;
 import co.com.mueblessas.model.stats.Stats;
@@ -27,8 +28,10 @@ public class Handler {
                 .flatMap(validator::validate)
                 .map(mapper::toDomain)
                 .flatMap(useCase::processStats)
+                .map(mapper::toEntity)
                 .flatMap(stats -> {
-                    ApiResponse<Stats> response = ApiResponse.success("Registered", stats, 201);
+                    System.out.println(stats.getTimestamp());
+                    ApiResponse<StatsResponse> response = ApiResponse.success("Registered", stats, 201);
                     return ServerResponse
                             .status(HttpStatus.CREATED)
                             .contentType(MediaType.APPLICATION_JSON)
@@ -40,13 +43,5 @@ public class Handler {
         return ServerResponse.ok().bodyValue("Working!");
     }
 
-//    public Mono<ServerResponse> listenGETOtherUseCase(ServerRequest serverRequest) {
-//        // useCase2.logic();
-//        return ServerResponse.ok().bodyValue("");
-//    }
-//
-//    public Mono<ServerResponse> listenPOSTUseCase(ServerRequest serverRequest) {
-//        // useCase.logic();
-//        return ServerResponse.ok().bodyValue("");
-//    }
+
 }

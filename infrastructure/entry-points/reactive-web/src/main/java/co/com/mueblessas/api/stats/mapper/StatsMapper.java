@@ -22,4 +22,18 @@ public class StatsMapper {
                 .timestamp(Instant.now())
                 .build();
     }
+
+    public StatsResponse toEntity(Stats stats) {
+        return StatsResponse.builder()
+                .totalCustomerContacts(stats.getTotalCustomerContacts())
+                .complaintReason(stats.getComplaintReason())
+                .warrantyReason(stats.getWarrantyReason())
+                .questionReason(stats.getQuestionReason())
+                .purchaseReason(stats.getPurchaseReason())
+                .praiseReason(stats.getPraiseReason())
+                .exchangeReason(stats.getExchangeReason())
+                .hash(stats.getHash())
+                .timestamp(stats.getTimestamp() != null ? stats.getTimestamp().toString() : null)
+                .build();
+    }
 }

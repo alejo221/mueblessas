@@ -6,7 +6,7 @@ Feature: POST /api/v1/stats - Register stats
     * configure headers = headers
     * def ValidatorTestUtils = Java.type('co.com.mueblessas.utils.ValidatorTestUtils')
 
-  Scenario: Save stats succefully
+  Scenario: Save stats successfully
     Given path '/stats'
     And request read('valid/addStats.json')
     When method post

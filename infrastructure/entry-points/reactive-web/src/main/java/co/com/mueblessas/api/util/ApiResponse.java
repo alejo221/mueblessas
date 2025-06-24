@@ -10,21 +10,21 @@ public record ApiResponse<T>(
         boolean success,
         String message,
         T data,
-        Instant timestamp,
+        String timestamp,
         Integer code,
         List<ValidationError> errors
 ) {
     public static <T> ApiResponse<T> success(String message, T data, int code) {
-        return new ApiResponse<>(true, message, data, Instant.now(), code, null);
+        return new ApiResponse<>(true, message, data, Instant.now().toString(), code, null);
     }
 
 
 
     public static <T> ApiResponse<T> error(String message, int code) {
-        return new ApiResponse<>(false, message, null, Instant.now(), code, null);
+        return new ApiResponse<>(false, message, null, Instant.now().toString(), code, null);
     }
 
     public static <T> ApiResponse<T> validationError(String message, int code, List<ValidationError> errors) {
-        return new ApiResponse<>(false, message, null, Instant.now(), code, errors);
+        return new ApiResponse<>(false, message, null, Instant.now().toString(), code, errors);
     }
 }

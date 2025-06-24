@@ -3,6 +3,7 @@ package co.com.mueblessas.api;
 import co.com.mueblessas.api.exception.GlobalExceptionHandler;
 import co.com.mueblessas.api.stats.StatsRequest;
 import co.com.mueblessas.api.stats.mapper.StatsMapper;
+import co.com.mueblessas.api.stats.mapper.StatsResponse;
 import co.com.mueblessas.api.validator.RequestValidator;
 import co.com.mueblessas.model.stats.Stats;
 import co.com.mueblessas.model.stats.exception.InvalidHashException;
@@ -55,11 +56,12 @@ class RouterRestTest {
         StatsRequest request = new StatsRequest(100, 1,
                 1, 1, 1, 1, 1, "validhash");
         Stats domainStats = new Stats();
-
+        StatsResponse response = StatsResponse.builder().totalCustomerContacts(100).complaintReason(1)
+                .exchangeReason(1).questionReason(1).purchaseReason(1).build();
         when(validator.validate(request)).thenReturn(Mono.just(request));
         when(mapper.toDomain(request)).thenReturn(domainStats);
         when(useCase.processStats(domainStats)).thenReturn(Mono.just(domainStats));
-
+        when(mapper.toEntity(domainStats)).thenReturn(response);
         webTestClient.post()
                 .uri("/api/v1/stats")
                 .contentType(MediaType.APPLICATION_JSON)

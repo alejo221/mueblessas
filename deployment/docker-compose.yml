@@ -1,6 +1,5 @@
 version: '3.8'
 services:
-
   dynamodb-local:
     image: amazon/dynamodb-local
     container_name: dynamodb-local
@@ -38,6 +37,7 @@ services:
       RABBITMQ_LOAD_DEFINITIONS: /etc/rabbitmq/definitions.json
     volumes:
       - ./scripts/rabbit-definitions.json:/etc/rabbitmq/definitions.json
+      - ./scripts/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
     networks:
       - backend
 
