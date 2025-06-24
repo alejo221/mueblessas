@@ -8,7 +8,7 @@ Microservicio construido con **Spring Boot**, usando la plantilla de **arquitect
 
 - [Docker](https://docs.docker.com/get-docker/)
 - [Docker Compose](https://docs.docker.com/compose/)
-- JDK 21+ y Gradle 8+ si deseas ejecutar sin contenedores
+- JDK 21+ y Gradle 8+
 
 ---
 
