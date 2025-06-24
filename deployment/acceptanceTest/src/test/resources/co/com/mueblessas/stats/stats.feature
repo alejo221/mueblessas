@@ -15,7 +15,7 @@ Feature: POST /api/v1/stats - Register stats
     And match response.message == "Registered"
     And match response.code == 201
     And match response.errors == null
-    And match response.timestamp == "#number"
+    And match response.timestamp == "#string"
     And match response.data.totalCustomerContacts == "#number"
     And match response.data.complaintReason == "#number"
     And match response.data.warrantyReason == "#number"
@@ -24,7 +24,7 @@ Feature: POST /api/v1/stats - Register stats
     And match response.data.praiseReason == "#number"
     And match response.data.exchangeReason == "#number"
     And match response.data.hash == "#string"
-    And match response.data.timestamp == "#number"
+    And match response.data.timestamp == "#string"
 
   Scenario: Save stats and hash is different from its data
     Given path '/stats'
@@ -34,7 +34,7 @@ Feature: POST /api/v1/stats - Register stats
     And match response.success == false
     And match response.message == "The hash is not valid"
     And match response.data == null
-    And match response.timestamp == "#number"
+    And match response.timestamp == "#string"
     And match response.code == 400
     And match response.errors == null
 
