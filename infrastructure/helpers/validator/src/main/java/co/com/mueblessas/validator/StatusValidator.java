@@ -14,9 +14,13 @@ public class StatusValidator implements HashValidator {
 
     @Override
     public Mono<Void> validateFromStats(Stats stats) {
-        String expected = createHashByStats(stats);
-        return expected.equalsIgnoreCase(stats.getHash())?Mono.empty():
-                Mono.error(new InvalidHashException("The hash is not valid"));
+        return Mono.defer(() -> {
+            String expected = createHashByStats(stats);
+            if (!expected.equalsIgnoreCase(stats.getHash())) {
+                return Mono.error(new InvalidHashException("The hash is not valid"));
+            }
+            return Mono.empty();
+        });
     }
 
     private String createHashByStats(Stats stats){

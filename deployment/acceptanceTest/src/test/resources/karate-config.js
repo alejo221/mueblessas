@@ -8,7 +8,7 @@ function fn() {
       'Another-Header': 'value'
     },
     oasUrl: 'co/com/mueblessas/pet-store.yaml',
-    urlBase: 'https://petstore3.swagger.io/api/v3'
+    urlBase: 'http://localhost:8080/api/v1'
   };
 
   karate.configure('connectTimeout', 2000);

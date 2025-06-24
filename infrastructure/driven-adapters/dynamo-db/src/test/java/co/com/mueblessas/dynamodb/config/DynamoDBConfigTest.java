@@ -9,6 +9,7 @@ import software.amazon.awssdk.metrics.MetricPublisher;
 import software.amazon.awssdk.services.dynamodb.DynamoDbAsyncClient;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.mock;
 
 @ExtendWith(MockitoExtension.class)
 class DynamoDBConfigTest {
@@ -19,33 +20,20 @@ class DynamoDBConfigTest {
     @Mock
     private DynamoDbAsyncClient dynamoDbAsyncClient;
 
-    private final DynamoDBConfig dynamoDBConfig = new DynamoDBConfig();
-
+    private final DynamoDBConfig config = new DynamoDBConfig();
     @Test
     void testAmazonDynamoDB() {
-
-        DynamoDbAsyncClient result = dynamoDBConfig.amazonDynamoDB(
-                "http://aws.dynamo.test",
-                "region",
+        DynamoDbAsyncClient result = config.amazonDynamoDB(
+                "http://localhost:8000",
+                "us-east-1",
                 publisher);
 
         assertNotNull(result);
     }
 
     @Test
-    void testAmazonDynamoDBAsync() {
-
-        DynamoDbAsyncClient result = dynamoDBConfig.amazonDynamoDBAsync(
-                publisher,
-                "region");
-
-        assertNotNull(result);
-    }
-
-
-    @Test
     void testGetDynamoDbEnhancedAsyncClient() {
-        DynamoDbEnhancedAsyncClient result = dynamoDBConfig.getDynamoDbEnhancedAsyncClient(dynamoDbAsyncClient);
+        DynamoDbEnhancedAsyncClient result = config.getDynamoDbEnhancedAsyncClient(dynamoDbAsyncClient);
 
         assertNotNull(result);
     }

@@ -15,6 +15,9 @@ spring:
 management:
   endpoints:
     web:
+      base-path: "/api/v1"
+      path-mapping:
+        health: "health"
       exposure:
         include: "health,prometheus"
   endpoint:

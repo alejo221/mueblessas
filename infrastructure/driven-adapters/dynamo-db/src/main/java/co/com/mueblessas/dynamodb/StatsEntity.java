@@ -33,15 +33,6 @@ public class StatsEntity {
     }
 
     public StatsEntity() {
-        this.timestamp = timestamp;
-        this.totalCustomerContacts = totalCustomerContacts;
-        this.complaintReason = complaintReason;
-        this.warrantyReason = warrantyReason;
-        this.questionReason = questionReason;
-        this.purchaseReason = purchaseReason;
-        this.praiseReason = praiseReason;
-        this.exchangeReason = exchangeReason;
-        this.hash = hash;
     }
 
     @DynamoDbPartitionKey

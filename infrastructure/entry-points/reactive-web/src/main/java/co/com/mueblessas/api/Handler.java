@@ -36,11 +36,10 @@ public class Handler {
                 });
     }
 
-//    public Mono<ServerResponse> listenGETUseCase(ServerRequest serverRequest) {
-//        // useCase.logic();
-//        return ServerResponse.ok().bodyValue("");
-//    }
-//
+    public Mono<ServerResponse> status(ServerRequest serverRequest) {
+        return ServerResponse.ok().bodyValue("Working!");
+    }
+
 //    public Mono<ServerResponse> listenGETOtherUseCase(ServerRequest serverRequest) {
 //        // useCase2.logic();
 //        return ServerResponse.ok().bodyValue("");

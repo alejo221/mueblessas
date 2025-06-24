@@ -1,14 +1,19 @@
 package co.com.mueblessas.dynamodb.helper;
 
 import co.com.mueblessas.dynamodb.StatsEntity;
+import co.com.mueblessas.dynamodb.StatsTemplateAdapter;
+import co.com.mueblessas.model.stats.Stats;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.reactivecommons.utils.ObjectMapper;
+import reactor.test.StepVerifier;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbAsyncTable;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedAsyncClient;
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
+
+import java.util.concurrent.CompletableFuture;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -28,6 +33,8 @@ class TemplateAdapterOperationsTest {
 
     private StatsEntity modelEntity;
 
+    private StatsTemplateAdapter statsTemplateAdapter;
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
@@ -41,7 +48,8 @@ class TemplateAdapterOperationsTest {
 
     @Test
     void modelEntityPropertiesMustNotBeNull() {
-        StatsEntity modelEntityUnderTest = new StatsEntity(anyString(),anyInt(),anyInt(),anyInt(),anyInt(),anyInt(),anyInt(),anyInt(),anyString());
+        StatsEntity modelEntityUnderTest = new StatsEntity(anyString(),anyInt(),anyInt(),
+                anyInt(),anyInt(),anyInt(),anyInt(),anyInt(),anyString());
 
         assertNotNull(modelEntityUnderTest.getTimestamp());
         assertNotNull(modelEntityUnderTest.getHash());
@@ -52,10 +60,10 @@ class TemplateAdapterOperationsTest {
 //        when(customerTable.putItem(modelEntity)).thenReturn(CompletableFuture.runAsync(()->{}));
 //        when(mapper.map(modelEntity, StatsEntity.class)).thenReturn(modelEntity);
 //
-//        DynamoDBTemplateAdapter dynamoDBTemplateAdapter =
-//                new DynamoDBTemplateAdapter(dynamoDbEnhancedAsyncClient, mapper, "Stats");
+//        statsTemplateAdapter =
+//                new StatsTemplateAdapter(dynamoDbEnhancedAsyncClient, mapper, "Stats");
 //
-//        StepVerifier.create(dynamoDBTemplateAdapter.save(modelEntity))
+//        StepVerifier.create(statsTemplateAdapter.save(modelEntity))
 //                .expectNextCount(Stats.builder().build())
 //                .verifyComplete();
 //    }

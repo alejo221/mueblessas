@@ -35,15 +35,6 @@ public class DynamoDBConfig {
                 .build();
     }
 
-//    @Bean
-//    @Profile({"dev", "cer", "pdn"})
-//    public DynamoDbAsyncClient amazonDynamoDBAsync(MetricPublisher publisher, @Value("${aws.region}") String region) {
-//        return DynamoDbAsyncClient.builder()
-//                .credentialsProvider(WebIdentityTokenFileCredentialsProvider.create())
-//                .region(Region.of(region))
-//                .overrideConfiguration(o -> o.addMetricPublisher(publisher))
-//                .build();
-//    }
 
     @Bean
     public DynamoDbEnhancedAsyncClient getDynamoDbEnhancedAsyncClient(DynamoDbAsyncClient client) {
