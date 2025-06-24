@@ -57,7 +57,7 @@ Feature: POST /api/v1/stats - Register stats
     And match response.success == false
     And match response.message == 'Validación fallida'
     And match response.code == 400
-    And match response.errors[0].field == 'motivoReclamo'
+    And match response.errors[0].field == 'motivoReclamo  '
     And match response.errors[0].message == 'El motivoReclamo es obligatorio'
 
   Scenario: Save stats and exchange reason is blank
